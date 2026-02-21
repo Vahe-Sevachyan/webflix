@@ -50,11 +50,16 @@ function Home() {
             Search
           </button>
         </form>
-        <div className="movies-grid">
-          {filteredMovies.map((movie) => (
-            <Movie movie={movie} key={movie.id} />
-          ))}
-        </div>
+        {error && <div className="error-message">{error}</div>}
+        {loading ? (
+          <div className="loading">Loading...</div>
+        ) : (
+          <div className="movies-grid">
+            {filteredMovies.map((movie) => (
+              <Movie movie={movie} key={movie.id} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
