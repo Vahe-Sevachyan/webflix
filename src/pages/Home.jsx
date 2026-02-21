@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Movie from "../components/MovideCard";
+import MovieCard from "../components/MovideCard";
 import { searchMovies, getPopularMovies } from "../services/api";
 import "../styles/Home.css";
 
@@ -66,7 +66,7 @@ function Home() {
         ) : (
           <div className="movies-grid">
             {movies.map((movie) => (
-              <Movie movie={movie} key={movie.id} />
+              <MovieCard movie={movie} key={movie.id} />
             ))}
           </div>
         )}
