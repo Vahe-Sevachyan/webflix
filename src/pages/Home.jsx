@@ -1,14 +1,29 @@
-import { useState } from "react";
-import Movie, { MovieCard } from "../components/MovideCard";
+import { useState, useEffect } from "react";
+import Movie from "../components/MovideCard";
+import { searchMovies, getPopularMovies } from "../services/api";
+import "../styles/Home.css";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
-  const movies = [
-    { id: 1, title: "John Wick", release_date: 2020 },
-    { id: 2, title: "Terminator", release_date: 2023 },
-    { id: 3, title: "Matrix", release_date: 1998 },
-    { id: 4, title: "Avatar", release_date: 2010 },
-  ];
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setloading] = useState(true);
+
+  useEffect(() => {
+    const loadPopularMovies = async () => {
+      try {
+        const popularMovies = await getPopularMovies();
+        setMovies(popularMovies);
+      } catch (err) {
+        setError("Failed to load movies...");
+        console.log(err);
+      } finally {
+        setloading(false);
+      }
+    };
+    loadPopularMovies();
+  }, []);
+
   const handleSearch = (event) => {
     event.preventDefault();
   };
