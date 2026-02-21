@@ -42,10 +42,6 @@ function Home() {
     // setSearchQuery("");
   };
 
-  // const filteredMovies = movies.filter((movie) => {
-  //   return movie.title.toLocaleLowerCase().includes(searchQuery);
-  // });
-
   return (
     <>
       <div className="home">
